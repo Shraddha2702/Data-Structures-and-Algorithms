@@ -1,0 +1,62 @@
+import java.util.*;
+
+class stackimp
+{
+  int cap = 3;
+  int[] arr = new int[3];
+  int top = -1;
+  
+  boolean push(int elem)
+  {
+    if(top > cap-1)
+    {
+      System.out.println("Can't push !");
+      return false;
+    }
+    else
+    {
+      top++;
+      arr[top]= elem;
+    }
+  }
+  
+  boolean pop()
+  {
+    if(top < 0)
+    {
+      System.out.println("Can't pop ! No members yet ");
+      return false;
+    }else
+    {
+      top -- ;
+      return true;
+    }
+  }
+  
+  
+  void printElem()
+  {
+    if(int i=0;i<arr.length;i++)
+    {
+      System.out.println(arr[i]+"\t");
+    }
+  }
+}
+
+
+class TestStack
+{
+  public static void main(String args[])
+  {
+   stackimp s = new stackimp();
+   
+   sc.push(10);
+   sc.push(34);
+   sc.push(24);
+   sc.push(35);
+   sc.pop();
+   sc.pop();
+   sc.push(45);
+   sc.printElem();
+  }
+}
