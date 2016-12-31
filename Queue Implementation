@@ -1,0 +1,105 @@
+import java.util.Scanner;
+
+class Queue
+{
+  int front,rear,len,size;
+  int[] queue;
+  
+  Queue(int size)
+  {
+    this.size = size;
+    queue = new int[size];
+    front = -1;
+    rear = -1;
+    len = 0;
+  }
+  
+  boolean isEmpty()
+  {
+    if(front == -1) return true;
+    else return false;
+  }
+  
+  boolean isFull()
+  {
+    if(front == 0 && rear == size-1) return true;
+    else return false;
+  }
+  
+  int getSize()
+  {
+    return len;
+  }
+  
+  void insert(int i)
+  {
+    if(rear == -1)
+    {
+      front =0;
+      rear = 0;
+      queue[rear] = i;
+    }
+    else if(rear+1 >= size)
+    {
+      System.out.println("Overflow Condition");
+    }
+    else if(rear+1 < size)
+    {
+      queue[++rear]=i;
+    }
+    len++;
+  }
+  
+  int remove()
+  {
+    if(front == -1)
+    {
+      System.out.println("Underflow Condition");
+    }
+    
+    else
+    {
+      len--;
+      int ele = queue[front];
+      
+      if(front == rear)
+      {
+        front = -1;
+        rear = -1;
+      }
+      else
+        front++;
+       return ele;
+    }
+  }
+  
+  void printarr()
+  {
+  
+  for(int j = front; j< rear ; q++)
+  {
+    System.out.println(queue[j]+"\t");
+  }
+  }
+  
+}
+
+
+class UseQueue
+{
+  public static void main(String args[])
+  {
+    Scanner sc = new Scanner(System.in);
+    int length = sc.nextInt();
+    
+    Queue q = new Queue(length);
+    
+    q.insert(19);
+    q.remove();
+    q.insert(34);
+    q.insert(466);
+    q.remove();
+    q.insert(35);
+    q.printarr();
+  }
+}
