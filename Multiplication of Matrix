@@ -1,0 +1,77 @@
+//The program shows the multiplication of a 3 X 3 matrix in Java Language.
+
+import java.util.Scanner;
+
+public class Matrix
+{
+  public static void main(String args[])
+  {
+    int m,n,p,q,i,j,sum;
+    Scanner sc = new Scanner(System.in);
+    
+    
+    //Matrix First
+    System.out.println("Enter the no. of rows and columns of the first Matrix :");
+    m = sc.nextInt();
+    n = sc.nextInt();
+    
+    int[][] first = new int[m][n];
+    
+    System.out.println("Enter the elements of first Matrix :");
+    for(i=0;i<m;i++)
+    { 
+      for(j=0;j<n;j++)
+      {
+        first[i][j] = sc.nextInt();
+      }
+    }
+    
+   //Matrix Second
+   System.out.println("Enter the no. of rows and columns of the Second Matrix :");
+   p = sc.nextInt();
+   q = sc.nextInt();
+   
+   if(n != p)
+   {  
+    System.out.println("Matrix multiplication not possible!");
+   }
+   else
+   {
+    int[][] second = new int[p][q];
+     System.out.println("Enter the elements of the second Matrix : ");
+     for(i=0;i<p;i++)
+     {
+      for(j=0;j<q;j++)
+      {
+        second[i][j] = sc.nextInt();
+      }
+     }
+     
+     //Multiplication
+     int[][] mult = new int[m][q];
+     System.out.println("Multiplication of both the Matrix :");
+     for(i=0;i<m;i++)
+     {  
+      for(j=0;j<q;j++)
+      {
+        for(int k=0;k<p;k++)
+        {
+          sum= sum + first[i][k]*second[k][j];
+        }
+        mult[i][j] = sum;
+        sum =0;
+      }
+     }
+     
+     System.out.println("Multiplied Matrix :");
+     for(i=0;i<m;i++)
+     {
+      for(j=0;j<q;j++)
+      {
+        System.out.print(mult[i][j]+"\t");
+      }
+      System.out.print("\n");
+     }
+   }
+  }
+}
