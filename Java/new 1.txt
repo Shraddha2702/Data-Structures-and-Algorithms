@@ -1,0 +1,100 @@
+//Producer Consumer Problem
+
+class Producer implements Runnable
+{
+	Thread t;
+	Queue q;
+	
+	Producer(Queue q)
+	{
+		q=q;
+		t=new Thread(this,"Producer");
+		t.start();
+	}
+	
+	public void run()
+	{
+		int n=0;
+		q.put(n++);
+	}
+}
+
+class Consumer implements Runnable
+{
+	Thread t;
+	Queue q;
+	
+	Consumer(Queue q)
+	{
+		q=q;
+		t=new Thread(this,"Consumer");
+		t.start();
+	}
+	
+	public void run()
+	{
+		q.get();
+	}
+}
+
+class Queue
+{
+	int count=0;
+	boolean set=false;
+	
+	synchronized void get()
+	{	
+		while(set==false)
+		{
+			System.out.println("Consumer : Waiting");
+			
+			try
+			{
+				wait();
+			}
+			catch(InterruptedException e)
+			{
+				System.out.println("Caught");
+			}
+		}
+		
+	
+		System.out.println("Consumer : "+count);
+		set=false;
+		notify();
+	}
+	
+	
+	
+	synchronized void put(int x)
+	{
+		if(set==true)
+		{
+			System.out.println("Producer : Waiting");
+			try
+			{
+				wait();
+			}
+			catch(InterruptedException e)
+			{
+				System.out.println("Caught");
+			}
+		}
+		
+		count=x;
+		System.out.println("Producer :"+count);
+		set=true;
+		notify();
+	}
+}
+
+class PC2 
+{
+	public static void main(String args[])
+	{
+		Queue q=new Queue();
+		Producer p=new Producer(q);
+		Consumer s=new Consumer(q);
+	
+	}
+}
